@@ -22,5 +22,9 @@ for word in words_list:
     b_word = word.encode(encoding='utf-8')
     print(b_word, type(b_word))
 
+# 2.
+words_list = [b'class', b'function', b'method']
 
+for b_word in words_list:
+    print(b_word, type(b_word), len(b_word))
 
