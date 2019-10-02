@@ -28,3 +28,11 @@ words_list = [b'class', b'function', b'method']
 for b_word in words_list:
     print(b_word, type(b_word), len(b_word))
 
+# 3.
+words_list = ['attribute', 'класс', 'функция', 'type']
+
+for word in words_list:
+    try:
+        print(word.encode(encoding='ascii'))
+    except UnicodeError:
+        print(f'UnicodeError: {word}')
