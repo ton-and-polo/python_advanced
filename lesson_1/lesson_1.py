@@ -36,3 +36,12 @@ for word in words_list:
         print(word.encode(encoding='ascii'))
     except UnicodeError:
         print(f'UnicodeError: {word}')
+
+# 4.
+words_list = ['разаботка', 'адмиинстрирование', 'protocol', 'standard']
+
+for word in words_list:
+    word = word.encode(encoding='utf-8')
+    print(word)
+    word = word.decode(encoding='utf-8')
+    print(word)
