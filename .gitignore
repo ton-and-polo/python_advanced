@@ -1,2 +1,7 @@
 .idea/
 scratch.py
+venv/
+lesson_1/*.txt
+.DS_Store
+*.zip
+.
