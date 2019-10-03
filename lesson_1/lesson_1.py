@@ -2,6 +2,8 @@ import subprocess
 import chardet
 import sys
 
+
+
 """
 1. Каждое из слов «разработка», «сокет», «декоратор» представить в строковом формате и проверить тип и содержание соответствующих переменных. Затем с помощью онлайн-конвертера преобразовать строковые представление в формат Unicode и также проверить тип и содержимое переменных.
 
@@ -60,8 +62,9 @@ def run_ping(arguments: list):
         print(pong.decode(encoding='utf-8'), type(pong.decode(encoding='utf-8')))
 
 
-run_ping(['ping', '-c 5', 'yandex.com'])
-run_ping(['ping', '-c 5', 'youtube.com'])
+counter = '-c' if sys.platform == 'darwin' or 'linux' else '-n'  # Check for Windows/Mac OS
+run_ping(['ping', counter, '3', 'yandex.com'])
+run_ping(['ping', counter, '3', 'youtube.com'])
 
 # 6.
 words_list = ['сетевое програмирование', 'сокет', 'декоратор']
