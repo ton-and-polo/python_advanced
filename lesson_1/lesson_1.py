@@ -1,5 +1,6 @@
 import subprocess
-
+import chardet
+import sys
 
 """
 1. Каждое из слов «разработка», «сокет», «декоратор» представить в строковом формате и проверить тип и содержание соответствующих переменных. Затем с помощью онлайн-конвертера преобразовать строковые представление в формат Unicode и также проверить тип и содержимое переменных.
@@ -61,3 +62,16 @@ def run_ping(arguments: list):
 
 run_ping(['ping', '-c 5', 'yandex.com'])
 run_ping(['ping', '-c 5', 'youtube.com'])
+
+# 6.
+words_list = ['сетевое програмирование', 'сокет', 'декоратор']
+with open('test_file.txt', 'w', encoding='utf-8') as file:
+    for word in words_list:
+        file.write(f'{word}\n')
+
+with open('test_file.txt', 'r') as file:
+    result = chardet.detect(file.read().encode())
+    print(result['encoding'])
+
+# P.S.
+print(sys.getdefaultencoding())
