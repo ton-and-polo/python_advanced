@@ -1,3 +1,6 @@
+import subprocess
+
+
 """
 1. Каждое из слов «разработка», «сокет», «декоратор» представить в строковом формате и проверить тип и содержание соответствующих переменных. Затем с помощью онлайн-конвертера преобразовать строковые представление в формат Unicode и также проверить тип и содержимое переменных.
 
@@ -45,3 +48,16 @@ for word in words_list:
     print(word)
     word = word.decode(encoding='utf-8')
     print(word)
+
+# 5.
+
+
+def run_ping(arguments: list):
+    ping = subprocess.Popen(arguments, stdout=subprocess.PIPE)
+    for pong in ping.stdout:
+        print(pong, type(pong))
+        print(pong.decode(encoding='utf-8'), type(pong.decode(encoding='utf-8')))
+
+
+run_ping(['ping', '-c 5', 'yandex.com'])
+run_ping(['ping', '-c 5', 'youtube.com'])
