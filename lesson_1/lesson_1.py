@@ -1,6 +1,7 @@
+import platform
 import subprocess
 import chardet
-import sys
+
 
 
 
@@ -22,11 +23,8 @@ import sys
 words_list = ['разработка', 'сокет', 'декоратор']
 
 for word in words_list:
-    print(word, type(word))
-
-for word in words_list:
-    b_word = word.encode(encoding='utf-8')
-    print(b_word, type(b_word))
+    print(f'{type(word)}: {word}')
+    print(f'{type(word.encode(encoding="utf-8"))}: {word.encode(encoding="utf-8")}')
 
 # 2.
 words_list = [b'class', b'function', b'method']
@@ -39,9 +37,9 @@ words_list = ['attribute', 'класс', 'функция', 'type']
 
 for word in words_list:
     try:
-        print(word.encode(encoding='ascii'))
+        print(bytes(word, 'ascii'))  # You cannot
     except UnicodeError:
-        print(f'UnicodeError: {word}')
+        print(f'Cannot convert {word} to byte string.')
 
 # 4.
 words_list = ['разаботка', 'адмиинстрирование', 'protocol', 'standard']
@@ -58,13 +56,13 @@ for word in words_list:
 def run_ping(arguments: list):
     ping = subprocess.Popen(arguments, stdout=subprocess.PIPE)
     for pong in ping.stdout:
-        print(pong, type(pong))
-        print(pong.decode(encoding='utf-8'), type(pong.decode(encoding='utf-8')))
+        pong_detect = chardet.detect(pong)
+        print(pong.decode(encoding=pong_detect['encoding']), type(pong.decode(encoding=pong_detect['encoding'])))
 
 
-counter = '-c' if sys.platform == 'darwin' or 'linux' else '-n'  # Check for Windows/Mac OS
-run_ping(['ping', counter, '3', 'yandex.com'])
-run_ping(['ping', counter, '3', 'youtube.com'])
+# Check for Windows/Mac OS
+run_ping(['ping', '-n' if platform.system() == 'Windows' else '-c', '3', 'yandex.com'])
+run_ping(['ping', '-n' if platform.system() == 'Windows' else '-c', '3', 'youtube.com'])
 
 # 6.
 words_list = ['сетевое програмирование', 'сокет', 'декоратор']
@@ -72,9 +70,6 @@ with open('test_file.txt', 'w', encoding='utf-8') as file:
     for word in words_list:
         file.write(f'{word}\n')
 
-with open('test_file.txt', 'r') as file:
-    result = chardet.detect(file.read().encode())
-    print(result['encoding'])
+with open('test_file.txt', 'r', encoding='utf-8') as file:
+    print(file.read())
 
-# P.S.
-print(sys.getdefaultencoding())
