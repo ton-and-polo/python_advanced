@@ -1,2 +1,3 @@
 chardet==3.0.4
 pip-chill==0.1.8
+pyyaml==5.1.2
