@@ -1,6 +1,7 @@
 import os
 import re
 import csv
+import yaml
 import json
 import chardet
 
@@ -65,6 +66,7 @@ files_json = [os.path.join(path, file) for file in os.listdir(path) if re.findal
 
 # write_csv('my_file.csv', files_txt)
 
+
 # 2.
 
 
@@ -79,3 +81,17 @@ def write_json(file, order_data):
 
 my_order = {'item': 'iPhone 11', 'quantity': 1, 'price': 399, 'buyer': 'Mike', 'date': '10.07.2019'}
 # write_json(files_json[0], my_order)
+
+
+# 3.
+currency_signs = {'DOLLAR_SIGN': '\u0024', 'LIRA_SIGN': '\u00A3', 'RUBLE_SIGN': '\u20BD', 'BITCOIN_SIGN': '\u20BF'}
+data = {'list': [1, 2, 3], 'integer': 99, 'currency_signs': currency_signs}
+
+
+with open('my_file.yaml', 'w') as yaml_file:
+    yaml.safe_dump(data, yaml_file, default_flow_style=False, allow_unicode=True)
+
+with open('my_file.yaml', 'r') as yaml_file:
+    yaml_data = yaml.safe_load(yaml_file)
+
+print(yaml_data)
