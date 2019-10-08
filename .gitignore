@@ -6,3 +6,4 @@ lesson_1/*.txt
 *.zip
 .
 my_file.csv
+my_file.yaml
