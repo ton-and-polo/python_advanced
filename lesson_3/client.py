@@ -3,7 +3,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 
 
 parser = ArgumentParser()
-parser.add_argument('--host', help='client address', type=str, default='')
+parser.add_argument('--host', help='client address', type=str, default='127.0.0.1')
 parser.add_argument('--port', help='client port', type=int, default=7777)
 args = parser.parse_args()
 

@@ -1,6 +1,6 @@
 from socket import socket, AF_INET, SOCK_STREAM
 
-HOST = ''    # All available interfaces
+HOST = '127.0.0.1'    # All available interfaces
 PORT = 7777  # Non-privileged port
 
 
