@@ -46,13 +46,16 @@ if __name__ == '__main__':
         logger.info(f'Start server at {HOST}:{PORT}')
         server.listen(MAX_CONNECTIONS)
 
-        connection, address = server.accept()
-        with connection:
-            logger.info(f'Connected by: {address}')
-            while True:
-                message = get_message(connection)
-                if message:
-                    logger.info(f'Connection {address} data: {message}')
-                    send_message(connection, process(message))
-                else:
-                    break
+        while True:
+            connection, address = server.accept()
+            with connection:
+                client_data = get_message(connection)
+
+                logger.info(f'Connected by: {address}')
+                logger.info(f'Client presence: {client_data}')
+
+                if client_data:
+                    server_data = process(client_data)
+                    send_message(connection, process(client_data))
+
+                    logger.info(f'Server response: {server_data}')
