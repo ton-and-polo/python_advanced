@@ -8,3 +8,4 @@ lesson_1/*.txt
 my_file.csv
 my_file.yaml
 __pycache__/
+*.log
